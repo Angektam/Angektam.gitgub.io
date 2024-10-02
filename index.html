@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresa de Grúas - Servicio Profesional 24/7</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="Servicios de grúas confiables y eficientes las 24 horas. Remolque, asistencia en carretera y más.">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
+        }
+        #dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #f4f4f4;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        #dark-mode-toggle:hover {
+            background-color: #ddd;
+        }
+        .dark-mode #dark-mode-toggle {
+            background-color: #555;
+        }
+        .dark-mode #dark-mode-toggle:hover {
+            background-color: #777;
+        }
+        .dark-mode .modal-content {
+            background-color: #444;
+            color: #f4f4f4;
+        }
+        .dark-mode input,
+        .dark-mode textarea {
+            background-color: #555;
+            color: #f4f4f4;
+            border-color: #666;
+        }
+        .dark-mode .btn {
+            background-color: #555;
+            color: #f4f4f4;
+        }
+        .dark-mode .btn:hover {
+            background-color: #777;
+        }
+        /* Estilos para el fondo en movimiento */
+        .moving-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffecd2);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        /* Ajuste para el contenido principal */
+        main {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        .dark-mode main {
+            background-color: rgba(51, 51, 51, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="moving-background"></div>
+    <button id="dark-mode-toggle" aria-label="Alternar modo oscuro">
+        <i class="fas fa-moon"></i>
+    </button>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#servicios"><i class="fas fa-wrench"></i> Servicios</a></li>
+                <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <li><a href="#" id="login-btn"><i class="fas fa-user"></i> Iniciar Sesión</a></li>
+                <li><a href="#" id="logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                <li><a href="#" id="search-cars-btn"><i class="fas fa-search"></i> Buscar Carros en Corralón</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="login-form" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2><i class="fas fa-lock"></i> Iniciar Sesión</h2>
+                <form id="login-form-element">
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> Usuario:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-key"></i> Contraseña:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="registro-options" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2><i class="fas fa-clipboard-list"></i> Opciones de Registro</h2>
+                <button id="registrar-grua-btn" class="btn btn-secondary">
+                    <i class="fas fa-truck-pickup"></i> Registrar Grúa
+                </button>
+                <button id="registrar-vehiculo-btn" class="btn btn-secondary">
+                    <i class="fas fa-car"></i> Registrar Vehículo
+                </button>
+                <button id="buscar-carros-corralon-btn" class="btn btn-secondary">
+                    <i class="fas fa-search"></i> Buscar Carros en Corralón
+                </button>
+            </div>
+        </div>
+
+        <section id="inicio" class="hero">
+            <h1><i class="fas fa-truck-moving"></i> Bienvenidos a nuestra empresa de grúas</h1>
+            <p>Ofrecemos servicios de grúas confiables y eficientes para todo tipo de vehículos. Nuestro equipo de profesionales está disponible las 24 horas del día, los 7 días de la semana para atender sus necesidades de remolque y asistencia en carretera.</p>
+            <a href="#contacto" class="btn btn-cta">Contáctanos ahora</a>
+        </section>
+
+        <section id="servicios">
+            <h2><i class="fas fa-tools"></i> Nuestros Servicios</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <i class="fas fa-car-crash"></i>
+                    <h3>Remolque de vehículos</h3>
+                    <p>Servicio rápido y seguro para cualquier tipo de vehículo.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-road"></i>
+                    <h3>Asistencia en carretera</h3>
+                    <p>Ayuda inmediata en caso de averías o accidentes.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-car-side"></i>
+                    <h3>Recuperación de vehículos</h3>
+                    <p>Rescate de vehículos en situaciones complicadas.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-truck-monster"></i>
+                    <h3>Transporte de maquinaria pesada</h3>
+                    <p>Movimiento seguro de equipos y maquinaria de gran tamaño.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <h2><i class="fas fa-address-book"></i> Contacto</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Teléfono: <a href="tel:+526688205855">+52 668 820 5855</a></p>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:gruaselcarteldewillywonka@gmail.com">gruaselcarteldewillywonka@gmail.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Dirección: Calle Principal 123, Ciudad, País</p>
+            </div>
+            <form id="contact-form">
+                <input type="text" placeholder="Nombre" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Mensaje" required></textarea>
+                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+            </form>
+        </section>
+
+        <section id="ip-address">
+            <h2><i class="fas fa-network-wired"></i> Dirección IP del servidor</h2>
+            <p id="ip"></p>
+        </section>
+
+        <section id="mysql-status">
+            <h2><i class="fas fa-database"></i> Estado de conexión MySQL</h2>
+            <p id="mysql-connection-status"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Empresa de Grúas. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip').textContent = data.ip;
+            })
+            .catch(error => {
+                console.error('Error al obtener la dirección IP:', error);
+                document.getElementById('ip').textContent = 'No se pudo obtener la dirección IP';
+            });
+
+        // Verificar el estado de conexión MySQL
+        fetch('/check-mysql-connection')
+            .then(response => response.json())
+            .then(data => {
+                const mysqlStatusElement = document.getElementById('mysql-connection-status');
+                if (data.connected) {
+                    mysqlStatusElement.textContent = 'Conectado a MySQL';
+                    mysqlStatusElement.style.color = 'green';
+                } else {
+                    mysqlStatusElement.textContent = 'No se pudo conectar a MySQL';
+                    mysqlStatusElement.style.color = 'red';
+                }
+            })
+            .catch(error => {
+                console.error('Error al verificar la conexión MySQL:', error);
+                document.getElementById('mysql-connection-status').textContent = 'Error al verificar la conexión MySQL';
+            });
+
+        let isLoggedIn = false;
+
+        document.getElementById('login-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!isLoggedIn) {
+                document.getElementById('login-form').style.display = 'block';
+            }
+        });
+
+        document.getElementById('login-form-element').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simulación de inicio de sesión (reemplazar con lógica real de autenticación)
+            if (username === 'root' && password === 'admin') {
+                console.log('Inicio de sesión exitoso');
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('registro-options').style.display = 'block';
+                document.getElementById('login-btn').style.display = 'none';
+                document.getElementById('logout-btn').style.display = 'inline-block';
+                isLoggedIn = true;
+            } else {
+                console.log('Credenciales incorrectas');
+                alert('Usuario o contraseña incorrectos');
+            }
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            isLoggedIn = false;
+            document.getElementById('registro-options').style.display = 'none';
+            document.getElementById('login-btn').style.display = 'inline-block';
+            document.getElementById('logout-btn').style.display = 'none';
+        });
+
+        document.getElementById('registrar-grua-btn').addEventListener('click', function() {
+            window.location.href = 'register-crane.html';
+        });
+
+        document.getElementById('registrar-vehiculo-btn').addEventListener('click', function() {
+            window.location.href = 'register-car.html';
+        });
+
+        document.getElementById('buscar-carros-corralon-btn').addEventListener('click', function() {
+            window.location.href = 'search-cars.html';
+        });
+
+        document.getElementById('search-cars-btn').addEventListener('click', function() {
+            if (isLoggedIn) {
+                window.location.href = 'search-cars.html';
+            } else {
+                alert('Por favor, inicie sesión para buscar carros en el corralón.');
+            }
+        });
+
+        // Cerrar modales al hacer clic fuera de ellos
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        });
+
+        // Funcionalidad del modo oscuro
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+
+        // Verificar si el modo oscuro estaba activado anteriormente
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        // Función para guardar datos en la base de datos
+        function saveToDatabase(data, endpoint) {
+            fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Datos guardados:', result);
+                alert('Datos guardados exitosamente');
+            })
+            .catch(error => {
+                console.error('Error al guardar datos:', error);
+                alert('Error al guardar datos');
+            });
+        }
+
+        // Evento para guardar datos de grúa
+        if (document.getElementById('register-crane-form')) {
+            document.getElementById('register-crane-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const craneData = Object.fromEntries(formData);
+                saveToDatabase(craneData, '/api/register-crane');
+            });
+        }
+
+        // Evento para guardar datos de vehículo
+        if (document.getElementById('register-car-form')) {
+            document.getElementById('register-car-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const carData = Object.fromEntries(formData);
+                saveToDatabase(carData, '/api/register-car');
+            });
+        }
+    </script>
+</body>
+</html>

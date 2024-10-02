@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda Avanzada de Vehículos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-search-plus"></i> Búsqueda Avanzada de Vehículos</h1>
+    </header>
+    <main>
+        <form id="search-cars-form">
+            <div class="form-group">
+                <label for="placas"><i class="fas fa-car"></i> Placas del Vehículo:</label>
+                <input type="text" id="placas" name="placas" placeholder="Ingrese las placas" required>
+            </div>
+            <div class="form-group">
+                <label for="numero-serie"><i class="fas fa-barcode"></i> Número de Serie del Vehículo:</label>
+                <input type="text" id="numero-serie" name="numero-serie" placeholder="Ingrese el número de serie" required>
+            </div>
+            <div class="form-group">
+                <label for="marca"><i class="fas fa-trademark"></i> Marca:</label>
+                <input type="text" id="marca" name="marca" placeholder="Ingrese la marca">
+            </div>
+            <div class="form-group">
+                <label for="modelo"><i class="fas fa-car-side"></i> Modelo:</label>
+                <input type="text" id="modelo" name="modelo" placeholder="Ingrese el modelo">
+            </div>
+            <div class="form-group">
+                <label for="anio"><i class="fas fa-calendar-alt"></i> Año:</label>
+                <input type="number" id="anio" name="anio" placeholder="Ingrese el año">
+            </div>
+            <div class="form-group">
+                <label for="color"><i class="fas fa-palette"></i> Color:</label>
+                <input type="text" id="color" name="color" placeholder="Ingrese el color">
+            </div>
+            <button type="submit" class="btn-search"><i class="fas fa-search"></i> Buscar Vehículos</button>
+        </form>
+        <div id="search-results" class="results-container"></div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Sistema de Búsqueda Avanzada de Vehículos. Todos los derechos reservados.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
